@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">StoryApp</string>
+    <string name="signup">Register</string>
+    <string name="login">Login</string>
+    <string name="message_welcome_page">Want to learn Android, iOS, Machine Learning, Cloud, Front-End, Back-End, and other IT fields? Just Dicoding Story!</string>
+    <string name="title_welcome_page">Welcome to Dicoding Story!</string>
+    <string name="title_signup_page">Complete your data below!</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Enter your data first!</string>
+    <string name="title_login_page">Are you ready to upgrade your skills?</string>
+    <string name="name">Name</string>
+    <string name="message_main_page">Happy Learning in Dicoding.</string>
+    <string name="greeting">Halo %1$s,</string>
+    <string name="logout">Logout</string>
+    <string name="banner">Banner</string>
+    <string name="camera_x">CameraX</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Galery</string>
+    <string name="upload">Upload</string>
+    <string name="empty_image_warning">Please insert the image file first.</string>
+    <string name="deskripsi">Description</string>
+    <string name="masukkan_nama_anda">Enter Your Name!</string>
+    <string name="masukkan_email_anda">Enter Your Email!</string>
+    <string name="error_email">The email you entered is invalid!</string>
+    <string name="error_password">Password must not be less than 8 characters</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+</resources>
