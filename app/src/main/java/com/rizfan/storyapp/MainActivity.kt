@@ -2,7 +2,7 @@ package com.rizfan.storyapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -37,25 +37,22 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        lifecycleScope.launch {
-            viewModel.getSession().observe(this@MainActivity) { user ->
-                if (!user.isLogin) {
-                    startActivity(Intent(this@MainActivity, WelcomeActivity::class.java))
-                    finish()
-                }else{
-                    Log.e("mainviewModel", "onCreate: ${user.token}")
-                    viewModel.getStory()
-                    viewModel.isLoading.observe(this@MainActivity) { state ->
-                        showLoading(state)
-                    }
+        viewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                val intent = Intent(this, WelcomeActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                finish()
+            } else {
+                viewModel.isLoading.observe(this) { state ->
+                    showLoading(state)
+                }
 
-                    viewModel.getStory().observe(this@MainActivity) { stories ->
-                        setStoryList(stories)
-                    }
+                viewModel.getStory().observe(this) { stories ->
+                    setStoryList(stories)
                 }
             }
         }
-
 
         val layoutManager = LinearLayoutManager(this)
         binding.rvStory.layoutManager = layoutManager
@@ -91,6 +88,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
+            }
+            R.id.settings->{
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }
         }
         return super.onOptionsItemSelected(item)

@@ -22,10 +22,10 @@ class StoryRepository private constructor(
     private val apiService: ApiService,
     private val userPreference: UserPreference
 ) {
-    var _list = MutableLiveData<List<ListStoryItem>?>()
-    var list: MutableLiveData<List<ListStoryItem>?> = _list
+    private var _list = MutableLiveData<List<ListStoryItem>>()
+    var list: MutableLiveData<List<ListStoryItem>> = _list
 
-    var _loginResponse = MutableLiveData<LoginResponse>()
+    private var _loginResponse = MutableLiveData<LoginResponse>()
     var loginResponse: MutableLiveData<LoginResponse> = _loginResponse
 
     var _isLoading = MutableLiveData<Boolean>()
@@ -111,6 +111,11 @@ class StoryRepository private constructor(
     companion object {
         @Volatile
         private var instance: StoryRepository? = null
+
+        fun clearInstance() {
+            instance = null
+        }
+
         fun getInstance(apiService: ApiService, userPreference: UserPreference): StoryRepository =
             instance ?: synchronized(this) {
                 instance ?: StoryRepository(apiService, userPreference)

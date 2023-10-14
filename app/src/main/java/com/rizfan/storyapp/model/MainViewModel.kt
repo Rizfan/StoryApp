@@ -17,8 +17,7 @@ class MainViewModel(private val repository: StoryRepository) : ViewModel() {
     }
 
     fun getSession(): LiveData<UserModel> {
-        val r = repository.getSession().asLiveData()
-        return r
+        return repository.getSession().asLiveData()
     }
 
     suspend fun logout() {

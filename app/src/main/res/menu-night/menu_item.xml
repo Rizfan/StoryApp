@@ -9,12 +9,14 @@
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_setting"
+            android:iconTint="@color/white"
             android:title="@string/settings"
             app:showAsAction="ifRoom"
             tools:targetApi="o" />
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_logout_24"
+            android:iconTint="@color/white"
             android:title="@string/logout"
             app:showAsAction="ifRoom"
             tools:targetApi="o" />

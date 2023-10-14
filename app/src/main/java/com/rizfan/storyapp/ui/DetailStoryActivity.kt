@@ -2,6 +2,7 @@ package com.rizfan.storyapp.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -57,6 +58,9 @@ class DetailStoryActivity : AppCompatActivity() {
                 }
                 startActivity(Intent(this, WelcomeActivity::class.java))
                 finish()
+            }
+            R.id.settings->{
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }
         }
         return super.onOptionsItemSelected(item)

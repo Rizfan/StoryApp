@@ -33,12 +33,9 @@ class RegisterActivity : AppCompatActivity() {
         _binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         setupView()
         setupAction()
         playAnimation()
-
-
     }
 
     private fun playAnimation() {

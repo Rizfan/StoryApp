@@ -16,9 +16,9 @@ class ViewModelFactory(private val repository: StoryRepository) :
                 RegisterViewModel(repository) as T
             }
 
-//            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
-//                LoginViewModel(repository) as T
-//            }
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+                LoginViewModel(repository) as T
+            }
 
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(repository) as T
@@ -35,6 +35,11 @@ class ViewModelFactory(private val repository: StoryRepository) :
     companion object {
         @Volatile
         private var INSTANCE: ViewModelFactory? = null
+
+        fun clearInstance() {
+            StoryRepository.clearInstance()
+            INSTANCE = null
+        }
 
         @JvmStatic
         fun getInstance(context: Context): ViewModelFactory {

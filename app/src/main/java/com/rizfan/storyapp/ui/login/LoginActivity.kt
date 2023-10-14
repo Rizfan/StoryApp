@@ -68,27 +68,22 @@ class LoginActivity : AppCompatActivity() {
                 } else if (password.isEmpty()) {
                     binding.passwordEditText.error = "Password tidak boleh kosong"
                 }
-                lifecycleScope.launch {
-                    viewModel.login(email, password)
-                }
 
-                Log.e("Loginnn", "login: ${viewModel.login(email, password)}")
+                viewModel.login(email, password)
+
                 viewModel.loginResponse.observe(this) {
                     Log.e("Loginnn", "it: ${it}")
-                    save(
-                        UserModel(
-                            it.loginResult?.token.toString(),
-                            it.loginResult?.name.toString(),
-                            it.loginResult?.userId.toString(),
-                            true
+                    if (it.error == false) {
+                        save(
+                            UserModel(
+                                it.loginResult?.token.toString(),
+                                it.loginResult?.name.toString(),
+                                it.loginResult?.userId.toString(),
+                                true
+                            )
                         )
-                    )
+                    }
                 }
-                moveToMain()
-//                viewModel.saveSession(viewModel.login(email, password))
-//                    Log.e("TAG", "setupAction: ${response.token}")
-
-
             } catch (e: HttpException) {
                 showLoading(false)
                 val errorBody = e.response()?.errorBody()?.string()
@@ -96,26 +91,16 @@ class LoginActivity : AppCompatActivity() {
                 showToast(errorResponse.message)
             }
 
-
         }
-    }
-
-    fun moveToMain() {
-        Log.e("Loginnn", "loginResponse: ${viewModel.loginResponse.value}")
-        Log.e("Loginnn", "getSession: ${viewModel.getSession().value}")
-        viewModel.loginResponse.observe(this) {
-            if (it.error == false) {
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-            }
-        }
-
     }
 
     private fun save(session: UserModel) {
         lifecycleScope.launch {
             viewModel.saveSession(session)
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            ViewModelFactory.clearInstance()
+            startActivity(intent)
         }
     }
 
@@ -126,11 +111,6 @@ class LoginActivity : AppCompatActivity() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) VISIBLE else GONE
         binding.loginButton.isEnabled = !isLoading
-    }
-
-    override fun onStop() {
-        super.onStop()
-        _binding = null
     }
 
     override fun onDestroy() {

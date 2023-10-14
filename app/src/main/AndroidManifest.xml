@@ -62,8 +62,8 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider> <!-- Trigger Google Play services to install the backported photo picker module. -->
-        <!-- suppress AndroidDomInspection -->
+        </provider>
+
         <service
             android:name="com.google.android.gms.common.download.DownloadService"
             android:enabled="false"

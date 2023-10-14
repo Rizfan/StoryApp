@@ -38,7 +38,6 @@ class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.ViewHolder>(DIFF_CA
                 itemView.setOnClickListener{
                     val intent = Intent(itemView.context, DetailStoryActivity::class.java)
                     intent.putExtra(DetailStoryActivity.DETAIL_STORY, story)
-
                     val optionsCompat: ActivityOptionsCompat =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
                             itemView.context as Activity,
@@ -46,7 +45,6 @@ class StoryAdapter : ListAdapter<ListStoryItem, StoryAdapter.ViewHolder>(DIFF_CA
                             Pair(tvJudul, "name"),
                             Pair(tvDeskripsi, "description")
                         )
-
                     itemView.context.startActivity(intent, optionsCompat.toBundle())
                 }
             }
