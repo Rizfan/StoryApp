@@ -1,21 +1,12 @@
 package com.rizfan.storyapp.data.response
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-data class StoryResponse(
-
-	@field:SerializedName("listStory")
-	val listStory: List<ListStoryItem> = emptyList(),
-
-	@field:SerializedName("error")
-	val error: Boolean? = null,
-
-	@field:SerializedName("message")
-	val message: String? = null
-)
-
+@Entity(tableName = "story")
 @Parcelize
 data class ListStoryItem(
 
@@ -34,9 +25,22 @@ data class ListStoryItem(
 	@field:SerializedName("lon")
 	val lon: Double? = null,
 
+	@PrimaryKey
 	@field:SerializedName("id")
-	val id: String? = null,
+	val id: String,
 
 	@field:SerializedName("lat")
 	val lat: Double? = null
 ) : Parcelable
+
+data class StoryResponse(
+
+	@field:SerializedName("listStory")
+	val listStory: List<ListStoryItem> = emptyList(),
+
+	@field:SerializedName("error")
+	val error: Boolean? = null,
+
+	@field:SerializedName("message")
+	val message: String? = null
+)

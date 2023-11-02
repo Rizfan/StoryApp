@@ -2,6 +2,7 @@ package com.rizfan.storyapp.di
 
 import android.content.Context
 import com.rizfan.storyapp.data.StoryRepository
+import com.rizfan.storyapp.data.database.StoryDatabase
 import com.rizfan.storyapp.data.pref.UserPreference
 import com.rizfan.storyapp.data.pref.dataStore
 import com.rizfan.storyapp.data.retrofit.ApiConfig
@@ -13,7 +14,8 @@ object Injection {
         val pref = UserPreference.getInstance(context.dataStore)
         val user = pref.getSession().first()
         val apiService = ApiConfig.getApiService(user.token)
-        StoryRepository.getInstance(apiService, pref)
+        val database = StoryDatabase.getDatabase(context)
+        StoryRepository.getInstance(database, apiService, pref)
     }
 
 }

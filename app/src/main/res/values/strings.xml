@@ -24,8 +24,12 @@
     <string name="masukkan_email_anda">Enter Your Email!</string>
     <string name="error_email">The email you entered is invalid!</string>
     <string name="error_password">Password must not be less than 8 characters</string>
-    <string name="appwidget_text">EXAMPLE</string>
-    <string name="add_widget">Add widget</string>
-    <string name="app_widget_description">This is an app widget description</string>
-    <string name="settings">Settings</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="maps">Maps</string>
+    <string name="normal_type">Normal</string>
+    <string name="satellite_type">Satellite</string>
+    <string name="terrain_type">Terrain</string>
+    <string name="hybrid_type">Hybrid</string>
+    <string name="empty_description_warning">Please insert the description first.</string>
+    <string name="location_optional">Location (optional) : </string>
 </resources>
